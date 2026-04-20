@@ -18,15 +18,14 @@ lemmatizer = WordNetLemmatizer()
 
 
 # ==========================================
-# 2. Функція очищення тексту (З ПІДТРИМКОЮ ЦИФР)
+# 2. Функція очищення тексту
 # ==========================================
 def clean_text(text):
     if not isinstance(text, str):
         return ""
-    # Додано 0-9, щоб система розпізнавала коди помилок (404, 500 тощо)
-    text = re.sub(r'[^a-zA-Z0-9\s]', '', text)
-    text = text.lower()
+    text = re.sub(r'[^a-zA-Z0-9\s]', '', text).lower()
     words = text.split()
+    # Видаляємо стоп-слова та використовуємо лемматизацію
     cleaned_words = [lemmatizer.lemmatize(w) for w in words if w not in stop_words]
     return " ".join(cleaned_words)
 
