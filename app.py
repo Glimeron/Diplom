@@ -23,10 +23,9 @@ lemmatizer = WordNetLemmatizer()
 def clean_text(text):
     if not isinstance(text, str):
         return ""
-    text = re.sub(r'[^a-zA-Z0-9\s]', '', text).lower()
-    # ПОВНІСТЮ прибрали lemmatizer, залишили тільки видалення стоп-слів
-    cleaned_words = [w for w in text.split() if w not in stop_words]
-    return " ".join(cleaned_words)
+    # Жодного NLTK чи стоп-слів. Просто залишаємо текст як є (без ком) і робимо маленьким.
+    text = re.sub(r'[^a-zA-Z0-9\s]', '', text)
+    return text.lower()
 
 
 # ==========================================
