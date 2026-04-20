@@ -24,9 +24,8 @@ def clean_text(text):
     if not isinstance(text, str):
         return ""
     text = re.sub(r'[^a-zA-Z0-9\s]', '', text).lower()
-    words = text.split()
-    # Видаляємо стоп-слова та використовуємо лемматизацію
-    cleaned_words = [lemmatizer.lemmatize(w) for w in words if w not in stop_words]
+    # ПОВНІСТЮ прибрали lemmatizer, залишили тільки видалення стоп-слів
+    cleaned_words = [w for w in text.split() if w not in stop_words]
     return " ".join(cleaned_words)
 
 
